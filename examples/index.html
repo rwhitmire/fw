@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+<body>
+    
+    <button>button out of context</button>
+
+    <div id="main"></div>
+
+    <template id="my-template">
+        <h2>hi there {{ firstName }} {{ lastName }}</h2>
+        <button>test</button>
+        <button>another test</button>
+        <input type="text" name="firstName" >
+        <input type="text" name="lastName" >
+
+        <span class="firstName-label"></span>
+        <span class="lastName-label"></span>
+
+    </template>
+
+    <script src="../src/sizzle.js"></script>
+    <script src="../src/handlebars.js"></script>
+    <script src="../dist/rye.js"></script>
+    <script src="app.js"></script>
+
+</body>
+</html>
