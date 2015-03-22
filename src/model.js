@@ -34,6 +34,6 @@
     }
   }
 
-  window.Model = Model;
+  Lib.Model = Model;
 
 })();

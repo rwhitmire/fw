@@ -1,6 +1,6 @@
 describe("Model", () => {
 
-  class TestModel extends Model {
+  class TestModel extends Lib.Model {
 
   }
 

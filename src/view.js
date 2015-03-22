@@ -5,6 +5,6 @@
 
   }
 
-  window.View = View;
+  Lib.View = View;
 
 }());

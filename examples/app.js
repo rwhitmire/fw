@@ -1,14 +1,14 @@
 (function() {
   "use strict";
 
-  class MyModel extends Model {
+  class MyModel extends Lib.Model {
     constructor(properties) {
       this.properties = properties;
     }
   }
 
 
-  class MyView extends ModelView {
+  class MyView extends Lib.ModelView {
     constructor(params) {
       this.model = params.model;
       this.template = Handlebars.compile(document.getElementById('my-template').innerHTML);
@@ -40,7 +40,7 @@
   }
 
 
-  class MyRegion extends Region {
+  class MyRegion extends Lib.Region {
     constructor() {
       this.container = "#main";
     }

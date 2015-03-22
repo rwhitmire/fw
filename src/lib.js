@@ -1,0 +1,5 @@
+(function() {
+
+  window.Lib = window;
+
+})();

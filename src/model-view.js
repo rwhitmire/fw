@@ -81,6 +81,6 @@
     }
   }
 
-  window.ModelView = ModelView;
+  Lib.ModelView = ModelView;
 
 })();

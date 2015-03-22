@@ -21,7 +21,7 @@
 
   }
 
-  window.Http = Http;
+  Lib.Http = Http;
 
 
 }());

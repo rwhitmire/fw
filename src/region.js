@@ -13,6 +13,6 @@
     }
   }
 
-  window.Region = Region;
+  Lib.Region = Region;
 
 })();

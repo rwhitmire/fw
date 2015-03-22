@@ -3,17 +3,30 @@
 
   class List {
     constructor(models) {
+      models = models || [];
 
       this.model = this.model || Model;
       this.models = [];
 
       for(let obj of models) {
-        this.models.push(new this.model(obj));
+        this.add(obj);
       }
+    }
 
+    add(obj) {
+      var model;
+
+      if(isModel(obj)) model = obj;
+      else model = new this.model(obj);
+
+      this.models.push(model);
     }
   }
 
-  window.List = List;
+  function isModel(obj) {
+    return !!obj.properties;
+  }
+
+  Lib.List = List;
 
 }());

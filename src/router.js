@@ -5,6 +5,6 @@
 
   }
 
-  window.Router = Router;
+  Lib.Router = Router;
 
 })();
