@@ -4,6 +4,16 @@ describe("Model", () => {
 
   }
 
+  describe("constructor", () => {
+    it("should set properties", () => {
+      var model = new TestModel({
+        foo: 'bar'
+      });
+
+      expect(model.get('foo')).toBe('bar');
+    });
+  });
+
   describe("set", () => {
     it("should set the property value", () => {
       var model = new TestModel();
@@ -36,7 +46,21 @@ describe("Model", () => {
 
       expect(triggered).toBe(true);
     });
-
   });
 
+  describe("get", () => {
+    it("should get the property value", () => {
+      var model = new TestModel();
+      model.set('foo', 'bar');
+      expect(model.get('foo')).toBe('bar');
+    });
+  });
+
+  describe("toJSON", () => {
+    it("should convert properties to json", () => {
+      var model = new TestModel({foo: "bar"});
+      var json = model.toJSON();
+      expect(JSON.parse(json).foo).toBe('bar');
+    });
+  });
 });

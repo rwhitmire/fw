@@ -2,6 +2,10 @@
   "use strict";
 
   class Model {
+    constructor(properties) {
+      this.properties = properties;
+    }
+
     get(propName) {
       return this.properties[propName];
     }
@@ -23,6 +27,10 @@
     on(eventDescription, callback) {
       this._events = this._events || [];
       this._events.push({eventDescription, callback});
+    }
+
+    toJSON() {
+      return JSON.stringify(this.properties);
     }
   }
 

@@ -8,7 +8,7 @@
   }
 
 
-  class MyView extends View {
+  class MyView extends ModelView {
     constructor(params) {
       this.model = params.model;
       this.template = Handlebars.compile(document.getElementById('my-template').innerHTML);
