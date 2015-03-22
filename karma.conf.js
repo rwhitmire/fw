@@ -28,6 +28,7 @@ module.exports = function(config) {
     plugins: [
       'karma-jasmine',
       'karma-chrome-launcher',
+      'karma-phantomjs-launcher',
       'karma-babel-preprocessor'
     ],
 
