@@ -1,7 +1,7 @@
 class Region {
   show(view) {
     view.render();
-    var container = Sizzle(this.container)[0];
+    var container = document.querySelector(this.container);
 
     container.innerHTML = "";
     container.appendChild(view.el);
@@ -44,12 +44,13 @@ class Region {
         selector += tokens[i] + " ";
       }
 
-      var nodes = Sizzle(selector, view.el);
+      var nodes = view.el.querySelectorAll(selector);
 
-      for(i in nodes) {
+      for(i = 0; i < nodes.length; i++) {
         var node = nodes[i];
         node.addEventListener(eventStr, view.events[key]);
       }
+
     }
   }
 
@@ -57,9 +58,9 @@ class Region {
     for(var key in view.bindings){
       var i;
       var propName = view.bindings[key];
-      var nodes = Sizzle(key, view.el);
+      var nodes = view.el.querySelectorAll(key);
 
-      for(i in nodes) {
+      for(i = 0; i < nodes.length; i++) {
         var node = nodes[i];
         bindNodeToProperty(node, view.model, propName);
       }
