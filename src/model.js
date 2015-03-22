@@ -7,6 +7,7 @@
     }
 
     set(propName, value) {
+      this.properties = this.properties || {};
       this.properties[propName] = value;
       
       for(let i in this._events){
