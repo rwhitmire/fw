@@ -60,4 +60,44 @@
 
   myRegion.show(myView);
 
+
+  class EmployeeListRegion extends Lib.Region {
+    get container() {
+      return "#employee-list";
+    }
+  }
+
+  class EmployeeList extends Lib.List {
+
+  }
+
+  class EmployeeModelView extends Lib.ModelView {
+    get template() {
+      return Handlebars.compile("{{ firstName }} {{ lastName }}");
+    }
+  }
+
+  class EmployeeListView extends Lib.ListView {
+    get modelView() {
+      return EmployeeModelView;
+    }
+  }
+
+  var employeeList = new EmployeeList([
+    {firstName: 'ryan', lastName: 'whitmire'},
+    {firstName: 'bill', lastName: 'smith'},
+  ]);
+
+  var employeeListView = new EmployeeListView({
+    list: employeeList
+  });
+
+  var employeeListRegion = new EmployeeListRegion();
+
+  employeeListRegion.show(employeeListView);
+
+  setTimeout(function() {
+    employeeList.add({firstName: 'bill', lastName: 'walton'});
+  }, 1000);
+
 })();

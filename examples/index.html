@@ -7,10 +7,8 @@
     <link rel="stylesheet" href="">
 </head>
 <body>
-    
-    <button>button out of context</button>
-
     <div id="main"></div>
+    <div id="employee-list"></div>
 
     <template id="my-template">
         <h2>hi there {{ firstName }} {{ lastName }}</h2>
@@ -18,23 +16,12 @@
         <button>another test</button>
         <input type="text" name="firstName" >
         <input type="text" name="lastName" >
-
         <span class="firstName-label"></span>
         <span class="lastName-label"></span>
-
     </template>
 
-    <script src="handlebars.js"></script>
-    <script src="../src/lib.js"></script>
-    <script src="../src/http.js"></script>
-    <script src="../src/router.js"></script>
-    <script src="../src/region.js"></script>
-    <script src="../src/model.js"></script>
-    <script src="../src/view.js"></script>
-    <script src="../src/list.js"></script>
-    <script src="../src/model-view.js"></script>
-    <script src="../src/list-view.js"></script>
-    <script src="app.js"></script>
-
+    <script src="js/lib/handlebars.js"></script>
+    <script src="js/lib/package.js"></script>
+    <script src="js/dist/app.js"></script>
 </body>
 </html>
