@@ -2,8 +2,15 @@
   "use strict";
 
   class ModelView extends View {
+    constructor(props) {
+      this.model = props.model || new Lib.Model();
+    }
+
     render() {
       console.log('rendering', this.el);
+
+      if(!this.template) throw "ModelView must define a template.";
+
       let templateStr = this.template(this.model.properties);
 
       // create the dom node

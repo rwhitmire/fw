@@ -5,22 +5,21 @@ describe("ListView", () => {
   }
 
   class TestModelView extends Lib.ModelView {
-
-    constructor() {
-
+    get template() {
+      return function(){"<div></div>";};
     }
-
   }
 
   class TestListView extends Lib.ListView {
-    constructor() {
-
+    constructor(props) {
+      super(props);
+      this.modelView = TestModelView;
     }
   }
 
-  xdescribe("render", () => {
+  describe("render", () => {
     it("should assign el", () => {
-      var list = new TestList([{foo: "bar"}]);
+      var list = new TestList([{foo: "bar"}, {foo: "baz"}]);
 
       var listView = new TestListView({
         modelView: TestModelView,
@@ -28,7 +27,7 @@ describe("ListView", () => {
       });
 
       listView.render();
-      expect(listView.el).not.toBeUndefined();
+      expect(listView.el.children.length).toBe(2);
     });
   });
 });

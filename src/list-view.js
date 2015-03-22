@@ -7,15 +7,37 @@
     }
 
     render() {
-      // let listNode = document.createElement(this.tagName || 'div');
+      var self = this;
+      let listNode = document.createElement(self.tagName || 'div');
 
-      // for (let model of this.list.models){
-      //   model.render();
-      //   listNode.appendChild(model.el);
-      // }
+      for (let model of self.list.models){
+        renderAndAppendModelView(self, listNode, model);
+      }
 
-      // this.el = listNode;
+      self.el = listNode;
+
+      self.list.on('add', function(model) {
+        renderAndAppendModelView(self, listNode, model);
+      });
     }
+  }
+
+  function renderModelView(listView, model) {
+    let modelView = new listView.modelView({
+      model: model
+    });
+
+    modelView.render();
+    return modelView;
+  }
+
+  function appendModelView(node, modelView) {
+    node.appendChild(modelView.el);
+  }
+
+  function renderAndAppendModelView(listView, node, model) {
+      var modelView = renderModelView(listView, model);
+      appendModelView(node, modelView);
   }
 
   Lib.ListView = ListView;

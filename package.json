@@ -8,6 +8,8 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-concat": "^0.5.1",
     "jasmine-core": "^2.2.0",
     "karma": "^0.12.31",
     "karma-babel-preprocessor": "^4.0.1",
