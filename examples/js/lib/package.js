@@ -289,6 +289,7 @@ var _classCallCheck = function (instance, Constructor) { if (!(instance instance
       _classCallCheck(this, ModelView);
 
       this.model = props.model || new Lib.Model();
+      if (this.init) this.init(props);
     }
 
     _inherits(ModelView, _View);
@@ -296,10 +297,7 @@ var _classCallCheck = function (instance, Constructor) { if (!(instance instance
     _createClass(ModelView, {
       render: {
         value: function render() {
-          console.log("rendering", this.el);
-
-          if (!this.template) throw "ModelView must define a template.";
-
+          if (!this.template) throw "ModelView must provide a template.";
           var templateStr = this.template(this.model.properties);
 
           // create the dom node
@@ -307,10 +305,10 @@ var _classCallCheck = function (instance, Constructor) { if (!(instance instance
           node.innerHTML = templateStr;
           this.el = node;
 
-          // bind events
+          // set up events
           setEvents(this);
 
-          // setup bindings
+          // set up bindings
           setBindings(this);
 
           if (this.onRender) this.onRender();
@@ -368,6 +366,10 @@ var _classCallCheck = function (instance, Constructor) { if (!(instance instance
 
       node.addEventListener("change", function () {
         model.set(propName, this.value);
+      });
+
+      model.on("change:" + propName, function (val) {
+        node.value = val;
       });
     } else {
       node.textContent = model.get(propName);

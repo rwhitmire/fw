@@ -9,39 +9,43 @@ var _classCallCheck = function (instance, Constructor) { if (!(instance instance
 (function () {
   "use strict";
 
-  var MyModel = (function (_Lib$Model) {
-    function MyModel(properties) {
-      _classCallCheck(this, MyModel);
-
-      this.properties = properties;
-    }
-
-    _inherits(MyModel, _Lib$Model);
-
-    return MyModel;
-  })(Lib.Model);
-
   var MyView = (function (_Lib$ModelView) {
-    function MyView(params) {
+    function MyView() {
       _classCallCheck(this, MyView);
 
-      this.model = params.model;
-      this.template = Handlebars.compile(document.getElementById("my-template").innerHTML);
-      this.tagName = "p";
-
-      this.events = {
-        "click button": this.onClickButton };
-
-      this.bindings = {
-        "[name=firstName]": "firstName",
-        "[name=lastName]": "lastName",
-        ".firstName-label": "firstName",
-        ".lastName-label": "lastName" };
+      if (_Lib$ModelView != null) {
+        _Lib$ModelView.apply(this, arguments);
+      }
     }
 
     _inherits(MyView, _Lib$ModelView);
 
     _createClass(MyView, {
+      template: {
+        get: function () {
+          return Handlebars.compile(document.getElementById("my-template").innerHTML);
+        }
+      },
+      tagName: {
+        get: function () {
+          return "p";
+        }
+      },
+      events: {
+        get: function () {
+          return {
+            "click button": this.onClickButton };
+        }
+      },
+      bindings: {
+        get: function () {
+          return {
+            "[name=firstName]": "firstName",
+            "[name=lastName]": "lastName",
+            ".firstName-label": "firstName",
+            ".lastName-label": "lastName" };
+        }
+      },
       onRender: {
         value: function onRender() {
           console.log("done rendering", this.el);
@@ -66,17 +70,27 @@ var _classCallCheck = function (instance, Constructor) { if (!(instance instance
     function MyRegion() {
       _classCallCheck(this, MyRegion);
 
-      this.container = "#main";
+      if (_Lib$Region != null) {
+        _Lib$Region.apply(this, arguments);
+      }
     }
 
     _inherits(MyRegion, _Lib$Region);
+
+    _createClass(MyRegion, {
+      container: {
+        get: function () {
+          return "#main";
+        }
+      }
+    });
 
     return MyRegion;
   })(Lib.Region);
 
   var myRegion = new MyRegion();
 
-  var myModel = new MyModel({
+  var myModel = new Lib.Model({
     firstName: "Gob",
     lastName: "Bluth" });
 
@@ -107,20 +121,6 @@ var _classCallCheck = function (instance, Constructor) { if (!(instance instance
 
     return EmployeeListRegion;
   })(Lib.Region);
-
-  var EmployeeList = (function (_Lib$List) {
-    function EmployeeList() {
-      _classCallCheck(this, EmployeeList);
-
-      if (_Lib$List != null) {
-        _Lib$List.apply(this, arguments);
-      }
-    }
-
-    _inherits(EmployeeList, _Lib$List);
-
-    return EmployeeList;
-  })(Lib.List);
 
   var EmployeeModelView = (function (_Lib$ModelView2) {
     function EmployeeModelView() {
@@ -166,7 +166,7 @@ var _classCallCheck = function (instance, Constructor) { if (!(instance instance
     return EmployeeListView;
   })(Lib.ListView);
 
-  var employeeList = new EmployeeList([{ firstName: "ryan", lastName: "whitmire" }, { firstName: "bill", lastName: "smith" }]);
+  var employeeList = new Lib.List([{ firstName: "ryan", lastName: "whitmire" }, { firstName: "bill", lastName: "smith" }]);
 
   var employeeListView = new EmployeeListView({
     list: employeeList

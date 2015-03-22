@@ -165,13 +165,11 @@
   class ModelView extends View {
     constructor(props) {
       this.model = props.model || new Lib.Model();
+      if(this.init) this.init(props);
     }
 
     render() {
-      console.log('rendering', this.el);
-
-      if(!this.template) throw "ModelView must define a template.";
-
+      if(!this.template) throw "ModelView must provide a template.";
       let templateStr = this.template(this.model.properties);
 
       // create the dom node
@@ -179,10 +177,10 @@
       node.innerHTML = templateStr;
       this.el = node;
 
-      // bind events
+      // set up events
       setEvents(this);
 
-      // setup bindings
+      // set up bindings
       setBindings(this);
 
       if(this.onRender) this.onRender();
@@ -205,7 +203,6 @@
         let node = nodes[i];
         node.addEventListener(eventStr, view.events[key]);
       }
-
     }
   }
 
@@ -218,7 +215,6 @@
         let node = nodes[i];
         bindNodeToProperty(node, view.model, propName);
       }
-
     }
   }
 
@@ -238,6 +234,10 @@
 
       node.addEventListener('change', function(){
         model.set(propName, this.value);
+      });
+
+      model.on('change:' + propName, function(val) {
+        node.value = val;
       });
     }
     else{

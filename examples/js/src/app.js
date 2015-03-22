@@ -1,24 +1,23 @@
 (function() {
   "use strict";
 
-  class MyModel extends Lib.Model {
-    constructor(properties) {
-      this.properties = properties;
-    }
-  }
-
-
   class MyView extends Lib.ModelView {
-    constructor(params) {
-      this.model = params.model;
-      this.template = Handlebars.compile(document.getElementById('my-template').innerHTML);
-      this.tagName = 'p';
+    get template() {
+      return Handlebars.compile(document.getElementById('my-template').innerHTML);
+    }
 
-      this.events = {
+    get tagName() {
+      return "p";
+    }
+
+    get events() {
+      return {
         'click button': this.onClickButton,
       };
+    }
 
-      this.bindings = {
+    get bindings() {
+      return {
         "[name=firstName]": 'firstName',
         "[name=lastName]": 'lastName',
         ".firstName-label": 'firstName',
@@ -41,15 +40,15 @@
 
 
   class MyRegion extends Lib.Region {
-    constructor() {
-      this.container = "#main";
+    get container() {
+      return "#main";
     }
   }
 
 
   var myRegion = new MyRegion();
 
-  var myModel = new MyModel({
+  var myModel = new Lib.Model({
     firstName: "Gob",
     lastName: "Bluth",
   });
@@ -67,10 +66,6 @@
     }
   }
 
-  class EmployeeList extends Lib.List {
-
-  }
-
   class EmployeeModelView extends Lib.ModelView {
     get template() {
       return Handlebars.compile("{{ firstName }} {{ lastName }}");
@@ -83,7 +78,7 @@
     }
   }
 
-  var employeeList = new EmployeeList([
+  var employeeList = new Lib.List([
     {firstName: 'ryan', lastName: 'whitmire'},
     {firstName: 'bill', lastName: 'smith'},
   ]);
