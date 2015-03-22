@@ -3,4 +3,3 @@
 * collections with events
 * intelligent collection rendering
 * data binding
-* 
