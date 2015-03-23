@@ -36,32 +36,14 @@ var _classCallCheck = function (instance, Constructor) { if (!(instance instance
       },
       trigger: {
         value: function trigger(event) {
+          this._events = this._events || [];
+
           var args = Array.prototype.slice.call(arguments);
           args.shift();
 
-          var _iteratorNormalCompletion = true;
-          var _didIteratorError = false;
-          var _iteratorError = undefined;
-
-          try {
-            for (var _iterator = (this._events || [])[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-              var e = _step.value;
-
-              if (e.event == event) e.callback.apply(null, args);
-            }
-          } catch (err) {
-            _didIteratorError = true;
-            _iteratorError = err;
-          } finally {
-            try {
-              if (!_iteratorNormalCompletion && _iterator["return"]) {
-                _iterator["return"]();
-              }
-            } finally {
-              if (_didIteratorError) {
-                throw _iteratorError;
-              }
-            }
+          for (var i = 0; i < this._events.length; i++) {
+            var e = this._events[i];
+            if (e.event == event) e.callback.apply(null, args);
           }
         }
       }
@@ -118,29 +100,9 @@ var _classCallCheck = function (instance, Constructor) { if (!(instance instance
           var self = this;
           var listNode = document.createElement(self.tagName || "div");
 
-          var _iteratorNormalCompletion = true;
-          var _didIteratorError = false;
-          var _iteratorError = undefined;
-
-          try {
-            for (var _iterator = self.list.models[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-              var model = _step.value;
-
-              renderAndAppendModelView(self, listNode, model);
-            }
-          } catch (err) {
-            _didIteratorError = true;
-            _iteratorError = err;
-          } finally {
-            try {
-              if (!_iteratorNormalCompletion && _iterator["return"]) {
-                _iterator["return"]();
-              }
-            } finally {
-              if (_didIteratorError) {
-                throw _iteratorError;
-              }
-            }
+          for (var i = 0; i < self.list.models.length; i++) {
+            var model = self.list.models[i];
+            renderAndAppendModelView(self, listNode, model);
           }
 
           self.el = listNode;
@@ -187,29 +149,8 @@ var _classCallCheck = function (instance, Constructor) { if (!(instance instance
       this.model = this.model || Model;
       this.models = [];
 
-      var _iteratorNormalCompletion = true;
-      var _didIteratorError = false;
-      var _iteratorError = undefined;
-
-      try {
-        for (var _iterator = models[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-          var obj = _step.value;
-
-          this.add(obj);
-        }
-      } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion && _iterator["return"]) {
-            _iterator["return"]();
-          }
-        } finally {
-          if (_didIteratorError) {
-            throw _iteratorError;
-          }
-        }
+      for (var i = 0; i < models.length; i++) {
+        this.add(models[i]);
       }
     }
 
@@ -244,28 +185,10 @@ var _classCallCheck = function (instance, Constructor) { if (!(instance instance
       },
       find: {
         value: function find(expression) {
-          var _iteratorNormalCompletion = true;
-          var _didIteratorError = false;
-          var _iteratorError = undefined;
-
-          try {
-            for (var _iterator = this.models[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-              var model = _step.value;
-
-              if (expression(model)) return model;
-            }
-          } catch (err) {
-            _didIteratorError = true;
-            _iteratorError = err;
-          } finally {
-            try {
-              if (!_iteratorNormalCompletion && _iterator["return"]) {
-                _iterator["return"]();
-              }
-            } finally {
-              if (_didIteratorError) {
-                throw _iteratorError;
-              }
+          for (var i = 0; i < this.models.length; i++) {
+            var model = this.models[i];
+            if (expression(model)) {
+              return model;
             }
           }
         }

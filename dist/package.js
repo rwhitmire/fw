@@ -23,10 +23,13 @@
     }
 
     trigger(event) {
+      this._events = this._events || [];
+
       var args = Array.prototype.slice.call(arguments);
       args.shift();
 
-      for(let e of this._events || []) {
+      for(let i = 0; i < this._events.length; i++) {
+        let e = this._events[i];
         if(e.event == event) e.callback.apply(null, args);
       }
     }
@@ -74,7 +77,8 @@
       var self = this;
       let listNode = document.createElement(self.tagName || 'div');
 
-      for (let model of self.list.models){
+      for(let i = 0; i < self.list.models.length; i++) {
+        let model = self.list.models[i];
         renderAndAppendModelView(self, listNode, model);
       }
 
@@ -117,8 +121,8 @@
       this.model = this.model || Model;
       this.models = [];
 
-      for(let obj of models) {
-        this.add(obj);
+      for(let i = 0; i < models.length; i++) {
+        this.add(models[i]);
       }
     }
 
@@ -146,7 +150,8 @@
     }
 
     find(expression) {
-      for(let model of this.models) {
+      for(let i = 0; i < this.models.length; i++) {
+        let model = this.models[i];
         if(expression(model)) return model;
       }
     }

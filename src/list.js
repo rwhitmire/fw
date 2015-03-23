@@ -8,8 +8,8 @@
       this.model = this.model || Model;
       this.models = [];
 
-      for(let obj of models) {
-        this.add(obj);
+      for(let i = 0; i < models.length; i++) {
+        this.add(models[i]);
       }
     }
 
@@ -37,7 +37,8 @@
     }
 
     find(expression) {
-      for(let model of this.models) {
+      for(let i = 0; i < this.models.length; i++) {
+        let model = this.models[i];
         if(expression(model)) return model;
       }
     }

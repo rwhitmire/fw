@@ -10,7 +10,8 @@
       var self = this;
       let listNode = document.createElement(self.tagName || 'div');
 
-      for (let model of self.list.models){
+      for(let i = 0; i < self.list.models.length; i++) {
+        let model = self.list.models[i];
         renderAndAppendModelView(self, listNode, model);
       }
 
